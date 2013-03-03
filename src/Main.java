@@ -5,15 +5,20 @@ public class Main {
     public static void main(String[] args) {
         Student[] s = createStudents();
 
-        printStudents(Arrays.asList(s));
-        SelectionSort.sort(s);
-        printStudents(Arrays.asList(s));
+        //printStudents(Arrays.asList(s));
+        //SelectionSort.sort(s);
+        //printStudents(Arrays.asList(s));
 
         LinkedList<Student> list = new LinkedList<Student>();
 
         for(Student student : s)
             list.addFirst(student);
 
+        printStudents(list);
+
+        list.selectionSort();
+
+        printStudents(list);
     }
 
     private static Student[] createStudents() {

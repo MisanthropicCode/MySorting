@@ -1,7 +1,7 @@
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedList<Item> implements Iterable<Item> {
+public class LinkedList<Item extends Comparable<Item>> implements Iterable<Item> {
     private class Node {
         Item value;
         Node next;
@@ -70,10 +70,36 @@ public class LinkedList<Item> implements Iterable<Item> {
             n = n.next;
         }
 
-        n.prev.next = n.next;
-        n.next.prev = n.prev;
+        remove(n);
+        size--;
 
         return n.value;
+    }
+
+    private void remove(Node n) {
+        if(n.next != null) {
+            n.prev.next = n.next;
+            n.next.prev = n.prev;
+        }
+        else {
+            n.prev.next = null;
+        }
+    }
+
+    public void selectionSort() {
+        for(Node i = first; i != null; i = i.next){
+            Node min = i;
+
+            for(Node j = i; j != null; j = j.next){
+                if(min.value.compareTo(j.value) > 0){
+                    min = j;
+                }
+            }
+
+            Item tmp = i.value;
+            i.value = min.value;
+            min.value = tmp;
+        }
     }
 
     public boolean isEmpty() {
