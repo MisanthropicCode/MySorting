@@ -15,16 +15,6 @@ public class QuickSort {
         sort(a, position+1, right);
     }
 
-    private static int medianOf3(Comparable[] a, int left, int right) {
-        int center = (left + right) / 2;
-        Comparable[] elements = new Comparable[] {a[left], a[center], a[right]};
-        SelectionSort.sort(elements);
-
-        if(a[left] == elements[1]) return left;
-        else if(a[right] == elements[1]) return right;
-        else return center;
-    }
-
     private static int partition(Comparable[] a, int left, int right) {
         int leftPos = left;
         int rightPos = right + 1;
@@ -56,5 +46,21 @@ public class QuickSort {
         Object swap = a[i];
         a[i] = a[j];
         a[j] = swap;
+    }
+
+    private static Comparable[] arrWithMedian = new Comparable[3];
+
+    private static int medianOf3(Comparable[] a, int left, int right) {
+        int center = (left + right) / 2;
+
+        arrWithMedian[0] = a[left];
+        arrWithMedian[1] = a[center];
+        arrWithMedian[2] = a[right];
+
+        SelectionSort.sort(arrWithMedian);
+
+        if(a[left] == arrWithMedian[1]) return left;
+        else if(a[right] == arrWithMedian[1]) return right;
+        else return center;
     }
 }
