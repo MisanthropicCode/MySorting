@@ -5,18 +5,22 @@ public class Main {
     public static void main(String[] args) {
         Student[] s = createStudents();
 
+        System.out.println("QuickSort testing");
+
         printStudents(Arrays.asList(s));
         QuickSort.sort(s);
         printStudents(Arrays.asList(s));
 
-        //LinkedList<Student> list = new LinkedList<Student>();
+        System.out.println("SelectionSort testing");
 
-        //for(Student student : s)
-        //    list.addFirst(student);
-        //
-        //printStudents(list);
-        //list.selectionSort();
-        //printStudents(list);
+        LinkedList<Student> list = new LinkedList<Student>();
+
+        for(Student student : s)
+            list.addFirst(student);
+
+        printStudents(list);
+        list.selectionSort();
+        printStudents(list);
     }
 
     private static Student[] createStudents() {
